@@ -1,4 +1,6 @@
 /*
+    Questão 6 -
+
         Pode-se definir uma função ¨f (n), fatorial duplo de n, com n ∈ N, como sendo o produto de todos os
     números naturais ímpares de 1 até n, inclusive este, quando ele é ímpar. Assim, por exemplo, tem-se que:
 
@@ -35,21 +37,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+long double fatDuplo(int , int );
+
 int main() {
     int n;
-    int result = 1;
+    long double result;
 
     scanf("%d", &n);
 
-    for (int i = 1; i <= n; i++) {
-        if (i % 2 == 1) {
-            result *= i;
-        }
-        else {
-            continue;
-        }
+    if (n < 1 || n > 100) {
+        return 0;
     }
 
-    printf("%d", result);
+    result = fatDuplo(n, 1);
 
+    printf("%0.Lf", result);
+
+}
+
+long double fatDuplo(int n, int count) {
+
+    if (n == 1 || n == 2) {
+        return 1;
+    }
+    else {
+        if (count == n) {
+            return count;
+        }
+        else if (count > n) {
+            return 1;
+        }
+        else {
+            return count * fatDuplo(n, count + 2);
+        }
+    }
 }
