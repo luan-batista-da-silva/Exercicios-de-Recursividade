@@ -1,31 +1,55 @@
+/*
+    Questão 5 -
+
+        Escreva um programa, em C, que receba um número natural n ∈ N, representado utilizando a notação
+    decimal, e o converta para sua notação binária. O programa deve utilizar uma “função recursiva” para
+    realizar a conversão.
+
+    Entrada:
+
+    A primeira linha conterá um número natural estritamente positivo k, 1 ≤ k ≤ 1000, que representa o
+    número de casos de teste que virão em seguida.
+    Cada uma das k linhas seguintes possuem, cada uma, um único número natural, 0 ≤ ni < 106, com 1 ≤ i ≤ k,
+    representado utilizando a notação decimal, a ser convertido para sua correspondente representação binária
+
+    Saída:
+
+    Seu programa deve imprimir k linhas, cada uma com a correspondente representação binária de um
+    número da entrada.
+
+    Exemplos:
+
+    ---------------------------------------------
+    |    Entrada         Saída                  |
+    |    5               1                      |
+    |    1               10                     |
+    |    2               11                     |
+    |    3               100                    |
+    |    4               101                    |
+    |    5                                      |
+    ---------------------------------------------
+    |    Entrada         Saída                  |
+    |    3               101000001              |
+    |    321             1011110001             |   
+    |    753             11111111               |
+    |    255                                    |
+    ---------------------------------------------
+    |    Entrada         Saída                  |
+    |    1               1011011001111100000    |
+    |    373728                                 |
+    ---------------------------------------------
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
-/*
-    Num 4
-        - Divide por 2
-        - Resto 0
-        - Multiplica por 1
-        - Soma 0
-        - Result = 0
-    Nums = 2
-        - Divide por 2
-        - Resto 0
-        - Multiplica por 10
-        - Soma 0
-        - Result = 0
-    Num = 1
-        - Multiplica por 100
-        - Soma no result 100
-        - Result = 100
-*/
+long double calcBin(int, int);
 
 int main() {
     int qntNums;
-    int num = 0, resto = 0;
-    long double result = 0;
-    int count = 0;
+    long double result;
 
     scanf("%d", &qntNums);
 
@@ -37,25 +61,30 @@ int main() {
 
     for (int i = 0; i < qntNums; i++) {
         scanf("%d", &nums[i]);
+
     }
 
     for (int i = 0; i < qntNums; i++) {
-        num = nums[i];
-        while (1) {
-            resto = num % 2;
-            num /= 2;
-            
-            result += resto * pow(10, count);
-            count++;
-
-            if (num < 2) {
-                result += num * pow(10, count);
-                break;
-            }
-        }
-        printf("%0.Lf\n", result);
         result = 0;
-        count = 0;
+        result = calcBin(nums[i], 0);
+        printf("%0.Lf\n", result);
     }
-    
+
+    return 0;
+}
+
+long double calcBin(int num,int count) {
+    int resto = 0;
+    long double res = 0;
+
+    if (num < 2) {
+        return num * pow(10, count);
+    }
+    else {
+        resto = num % 2;
+        num /= 2;
+        res = resto * pow(10, count);
+        return res + calcBin(num, count + 1);
+    }
+
 }
