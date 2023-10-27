@@ -34,7 +34,7 @@ int calcFibonacci(int );
 
 int main() {
     int casaDesejada;
-    // int i = 0;
+    int i = 0;
 
     scanf("%d", &casaDesejada);
 
@@ -42,7 +42,7 @@ int main() {
         return 0;
     }
 
-    for (int i = 0; i <= casaDesejada; i++) {
+    for (i = 0; i <= casaDesejada; i++) {
         printf("%d ", calcFibonacci(i));
     }
     

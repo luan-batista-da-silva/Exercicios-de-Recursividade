@@ -50,6 +50,7 @@ long double calcBin(int, int);
 int main() {
     int qntNums;
     long double result;
+    int i = 0;
 
     scanf("%d", &qntNums);
 
@@ -59,12 +60,12 @@ int main() {
 
     int nums[qntNums];
 
-    for (int i = 0; i < qntNums; i++) {
+    for (i = 0; i < qntNums; i++) {
         scanf("%d", &nums[i]);
 
     }
 
-    for (int i = 0; i < qntNums; i++) {
+    for (i = 0; i < qntNums; i++) {
         result = 0;
         result = calcBin(nums[i], 0);
         printf("%0.Lf\n", result);
